@@ -29,6 +29,9 @@ import {
   Lock,
   History,
   Sparkles,
+  Smartphone,
+  Eye,
+  ShieldCheck,
 } from 'lucide-react';
 import { generatePronounceablePassword } from '@/ai/flows/generate-pronounceable-password';
 
@@ -283,6 +286,53 @@ export default function PasswordGeneratorPage() {
             </Accordion>
           </CardFooter>
         </Card>
+
+        <div className="w-full max-w-2xl mt-8">
+          <Card className="border-2 border-primary/10 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold tracking-tight text-foreground">
+                Why PassQuartZ?
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <Smartphone className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Intuitive and Responsive Interface</h4>
+                    <p className="text-muted-foreground">
+                      Enjoy a seamless experience on any device, from desktops to smartphones.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <Eye className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Immediate Visual Feedback</h4>
+                    <p className="text-muted-foreground">
+                      Instantly see the strength of your password as you customize it.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <ShieldCheck className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Educational explanations about security</h4>
+                    <p className="text-muted-foreground">
+                      Learn what makes a password strong and how to protect yourself online.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </main>
   );
