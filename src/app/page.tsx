@@ -189,6 +189,11 @@ export default function PasswordGeneratorPage() {
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center bg-background p-4 font-body sm:p-6 md:p-8">
+      <div className="w-full max-w-4xl">
+        <div className="mb-8 flex h-24 w-full items-center justify-center rounded-lg bg-muted/50 text-muted-foreground">
+          Banner Ad Placeholder (728x90)
+        </div>
+      </div>
       <div className="w-full max-w-2xl">
         <Card className="border-2 border-primary/10 shadow-2xl shadow-primary/5">
           <CardHeader>
@@ -318,7 +323,11 @@ export default function PasswordGeneratorPage() {
           </CardFooter>
         </Card>
 
-        <div className="w-full max-w-2xl mt-8">
+        <div className="my-8 flex h-60 w-full items-center justify-center rounded-lg bg-muted/50 text-muted-foreground">
+          Banner Ad Placeholder (300x250)
+        </div>
+
+        <div className="w-full max-w-2xl">
           <Card className="border-2 border-primary/10 shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl font-bold tracking-tight text-foreground">
