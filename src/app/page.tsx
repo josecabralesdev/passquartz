@@ -32,6 +32,7 @@ import {
   Smartphone,
   Eye,
   ShieldCheck,
+  Trash,
 } from 'lucide-react';
 import { generatePronounceablePassword } from '@/ai/flows/generate-pronounceable-password';
 
@@ -136,8 +137,8 @@ export default function PasswordGeneratorPage() {
       console.error("Failed to generate password", error);
       toast({
         variant: 'destructive',
-        title: 'Error en la generación con IA',
-        description: 'La generación de contraseña con IA no está disponible en este momento. Inténtalo de nuevo más tarde.',
+        title: 'AI Generation Error',
+        description: 'The AI password generation service is currently unavailable. Please try again later.',
       });
     } finally {
       setIsGenerating(false);
@@ -155,6 +156,8 @@ export default function PasswordGeneratorPage() {
   useEffect(() => {
     if (history.length > 0) {
       localStorage.setItem('passquartz_history', JSON.stringify(history));
+    } else {
+      localStorage.removeItem('passquartz_history');
     }
   }, [history]);
 
@@ -167,6 +170,20 @@ export default function PasswordGeneratorPage() {
     toast({
       title: 'Copied to clipboard!',
       description: 'Your new password is ready to use.',
+    });
+  };
+
+  const handleDeleteFromHistory = (index: number) => {
+    setHistory(prev => prev.filter((_, i) => i !== index));
+    toast({
+      title: 'Password removed from history.',
+    });
+  };
+
+  const handleClearHistory = () => {
+    setHistory([]);
+    toast({
+      title: 'History cleared.',
     });
   };
 
@@ -272,16 +289,26 @@ export default function PasswordGeneratorPage() {
                 </AccordionTrigger>
                 <AccordionContent>
                   {history.length > 0 ? (
-                    <ul className="space-y-2">
-                      {history.map((histPass, index) => (
-                        <li key={index} className="flex items-center justify-between gap-2 rounded-md bg-muted/50 p-2">
-                          <span className="truncate font-mono text-sm">{histPass}</span>
-                          <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => handleCopyToClipboard(histPass)} aria-label="Copy password from history">
-                            <ClipboardCopy className="h-4 w-4" />
-                          </Button>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="space-y-4">
+                      <ul className="space-y-2">
+                        {history.map((histPass, index) => (
+                          <li key={index} className="flex items-center justify-between gap-2 rounded-md bg-muted/50 p-2">
+                            <span className="truncate font-mono text-sm">{histPass}</span>
+                            <div className="flex items-center gap-1">
+                              <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => handleCopyToClipboard(histPass)} aria-label="Copy password from history">
+                                <ClipboardCopy className="h-4 w-4" />
+                              </Button>
+                              <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0 text-destructive/70 hover:text-destructive" onClick={() => handleDeleteFromHistory(index)} aria-label="Delete password from history">
+                                <Trash className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button variant="outline" size="sm" className="w-full" onClick={handleClearHistory}>
+                        <Trash className="mr-2 h-4 w-4" /> Clear History
+                      </Button>
+                    </div>
                   ) : (
                     <p className="text-center text-sm text-muted-foreground">No history yet.</p>
                   )}
