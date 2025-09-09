@@ -136,8 +136,8 @@ export default function PasswordGeneratorPage() {
       console.error("Failed to generate password", error);
       toast({
         variant: 'destructive',
-        title: 'AI Password Generation Failed',
-        description: 'This may be due to API key issues or lack of credits. Check the console for details.',
+        title: 'Error en la generación con IA',
+        description: 'La generación de contraseña con IA no está disponible en este momento. Inténtalo de nuevo más tarde.',
       });
     } finally {
       setIsGenerating(false);
