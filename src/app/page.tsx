@@ -134,7 +134,11 @@ export default function PasswordGeneratorPage() {
       setHistory(prev => [newPassword, ...prev].slice(0, 10));
     } catch (error) {
       console.error("Failed to generate password", error);
-      toast({ variant: 'destructive', title: 'Error', description: 'Failed to generate password with AI.' });
+      toast({
+        variant: 'destructive',
+        title: 'AI Password Generation Failed',
+        description: 'This may be due to API key issues or lack of credits. Check the console for details.',
+      });
     } finally {
       setIsGenerating(false);
     }
